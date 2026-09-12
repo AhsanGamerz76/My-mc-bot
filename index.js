@@ -9,6 +9,13 @@ function createBot() {
 
     bot.on('spawn', () => {
         console.log('Bot successfully joined the server!');
+        
+        // Wait 3 seconds after spawning, then type the login command
+        setTimeout(() => {
+            // CHANGE "YourPassword123" to the password you want the bot to use
+            bot.chat('/login YourPassword123'); 
+            console.log('Sent login command.');
+        }, 3000);
     });
 
     bot.on('end', () => {
