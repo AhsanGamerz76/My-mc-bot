@@ -5,29 +5,27 @@ function createBot() {
         host: 'subdomain.mcsh.io', 
         port: 25565,                  
         username: 'AFK_Bot_247',
+        // This stops the network protocol from crashing if the host firewall hides the version
+        version: false, 
+        checkTimeoutInterval: 60000 // Gives the server 60 seconds to respond to network lag
     });
 
     bot.on('spawn', () => {
-        console.log('Bot successfully joined the server!');
+        console.log('Bot successfully bypassed firewall and joined the server!');
         
-        // Wait 3 seconds after spawning, then handle the security commands
         setTimeout(() => {
-            // This runs the register command for its first visit
-            bot.chat('/register AhsanGamer'); 
-            
-            // This runs the login command for all future visits
+            bot.chat('/register AhsanGamer AhsanGamer'); 
             bot.chat('/login AhsanGamer'); 
-            
-            console.log('Sent registration and login security commands.');
-        }, 3000);
+            console.log('Sent security credentials.');
+        }, 4000);
     });
 
-    bot.on('end', () => {
-        console.log('Bot disconnected! Reconnecting in 10 seconds...');
+    bot.on('end', (reason) => {
+        console.log(`Bot disconnected due to: ${reason}. Reconnecting in 10 seconds...`);
         setTimeout(createBot, 10000);
     });
 
-    bot.on('error', (err) => console.log(err));
+    bot.on('error', (err) => console.log('Network Error caught safely:', err.message));
 }
 
 createBot();
