@@ -10,11 +10,15 @@ function createBot() {
     bot.on('spawn', () => {
         console.log('Bot successfully joined the server!');
         
-        // Wait 3 seconds after spawning, then type the login command
+        // Wait 3 seconds after spawning, then handle the security commands
         setTimeout(() => {
-            // CHANGE "YourPassword123" to the password you want the bot to use
+            // This runs the register command for its first visit
+            bot.chat('/register AhsanGamer AhsanGamer'); 
+            
+            // This runs the login command for all future visits
             bot.chat('/login AhsanGamer'); 
-            console.log('Sent login command.');
+            
+            console.log('Sent registration and login security commands.');
         }, 3000);
     });
 
