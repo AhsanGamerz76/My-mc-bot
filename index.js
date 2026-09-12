@@ -13,7 +13,7 @@ function createBot() {
         // Wait 3 seconds after spawning, then handle the security commands
         setTimeout(() => {
             // This runs the register command for its first visit
-            bot.chat('/register AhsanGamer AhsanGamer'); 
+            bot.chat('/register AhsanGamer'); 
             
             // This runs the login command for all future visits
             bot.chat('/login AhsanGamer'); 
